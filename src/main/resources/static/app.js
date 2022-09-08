@@ -53,11 +53,10 @@ function showGreeting(message) {
  * @param {boolean} toShow
  */
 function toggleVisibility(elements, toShow) {
-	const displayValue = "table";
 	elements.forEach(element => {
 		let display;
 		if (toShow) {
-			display = displayValue;
+			display = "table";
 		} else {
 			display = "none";
 		}
