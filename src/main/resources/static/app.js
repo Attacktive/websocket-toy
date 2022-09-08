@@ -1,15 +1,15 @@
 let stompClient = null;
 
 function setConnected(connected) {
-	$("#connect").prop("disabled", connected);
-	$("#disconnect").prop("disabled", !connected);
+	document.querySelector("#connect").disabled = connected;
+	document.querySelector("#disconnect").disabled = !connected;
 	if (connected) {
-		$("#conversation").show();
+		toggleVisibility(document.querySelectorAll("#conversation"), true);
 	} else {
-		$("#conversation").hide();
+		toggleVisibility(document.querySelectorAll("#conversation"), false);
 	}
 
-	$("#greetings").html("");
+	document.querySelector("#greetings").innerHTML = "";
 }
 
 function connect() {
@@ -40,16 +40,37 @@ function disconnect() {
 }
 
 function sendName() {
-	stompClient.send("/app/hello", {}, JSON.stringify({ "name": $("#name").val() }));
+	stompClient.send("/app/hello", {}, JSON.stringify({ "name": document.querySelector("#name").value }));
 }
 
 function showGreeting(message) {
-	$("#greetings").append("<tr><td>" + message + "</td></tr>");
+	const element = document.querySelector("#greetings");
+	element.innerHTML += `<tr><td>${message}</td></tr>`;
 }
 
-$(function() {
-	$("form").on('submit', e => e.preventDefault());
-	$("#connect").click(() => connect());
-	$("#disconnect").click(() => disconnect());
-	$("#send").click(() => sendName());
-});
+/**
+ * @param {NodeList} elements
+ * @param {boolean} toShow
+ */
+function toggleVisibility(elements, toShow) {
+	const displayValue = "table";
+	elements.forEach(element => {
+		let display;
+		if (toShow) {
+			display = displayValue;
+		} else {
+			display = "none";
+		}
+
+		element.style.display = display;
+	});
+}
+
+window.addEventListener(
+	"DOMContentLoaded",
+	() => {
+		document.querySelector("#connect").onclick = () => connect();
+		document.querySelector("#disconnect").onclick = () => disconnect();
+		document.querySelector("#send").onclick = () => sendName();
+	}
+);
