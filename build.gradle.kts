@@ -28,8 +28,6 @@ dependencies {
 	implementation(webjarsGroupName, "sockjs-client", "1.0.2")
 	implementation(webjarsGroupName, "stomp-websocket", "2.3.3")
 	implementation(webjarsGroupName, "bootstrap", "3.3.7")
-
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {
