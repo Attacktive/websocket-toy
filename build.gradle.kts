@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-websocket")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -25,7 +26,6 @@ dependencies {
 	implementation("org.webjars", "sockjs-client", "1.0.2")
 	implementation("org.webjars", "stomp-websocket", "2.3.3")
 	implementation("org.webjars", "bootstrap", "3.3.7")
-	implementation("org.webjars", "jquery", "3.1.1-1")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
